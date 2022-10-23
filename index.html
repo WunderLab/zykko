@@ -146,8 +146,10 @@ document.querySelector('a.inquire').addEventListener('click', (e) => {
     document.body.appendChild(modal);
  
     modal.addEventListener('click', (e) => {
-        e.preventDefault();
-        modal.remove();
+	if (modal == e.target) modal.remove();
+    });
+    document.addEventListener("keydown", (e) => {
+    	if (e.key === "Escape") modal.remove();
     });
     setTimeout(() => { modal.style.opacity = 1 }, 1);
 })
