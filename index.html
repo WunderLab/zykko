@@ -11,7 +11,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
-</head>
+
 <style>
 html {
     height:100%;
@@ -69,7 +69,7 @@ footer {
 .inquire:hover {
     color: #ffc107;
 }	
-.modal {
+#modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -81,31 +81,6 @@ footer {
   opacity: 0;
   transition: opacity .7s ease
 }
-
-</style>
-
-<body>
-<div class="wrapper">
-    
-    <header></header>
-    <main>
-        <img class="logo" src="zykko.png" width="400" height="160" />
-    </main>
-	<footer><a href="http://" class="inquire"><span style="font-size: 40px;">[</span> CONTACT US <span style="font-size: 40px;">]</span></a></footer>
-    
-</div>
-
-
-<script>
-(() => {
-    let url = 'back.jpg';
-    let img = new Image();
-    img.onload = () => { document.body.style.backgroundImage = "url('"+url+"')"; }
-    img.src = url;
-  }
-)();
-</script>
-<style>
 .contact-form {
 	position: absolute;
 	top: 50%;
@@ -133,31 +108,60 @@ footer {
 	position: relative;
 }
 </style>
+</head>
+<body>
+<div class="wrapper">
+    
+    <header></header>
+    <main>
+        <img class="logo" src="zykko.png" width="400" height="160" />
+    </main>
+	<footer><a href="http://" class="inquire"><span style="font-size: 40px;">[</span> CONTACT US <span style="font-size: 40px;">]</span></a></footer>
+    
+</div>
+
 
 <script>
+(() => {
+    let url = 'back.jpg';
+    let img = new Image();
+    img.onload = () => { document.body.style.backgroundImage = "url('"+url+"')"; }
+    img.src = url;
+  }
+)();
+
 const img = new Image();
 img.src = "m.png";
 
-document.querySelector('a.inquire').addEventListener('click', (e) => {
-    e.preventDefault();
+const modalCreate = () => {
     let modal = document.createElement('div');
-    modal.className = 'modal';
+    modal.id = 'modal';
     modal.innerHTML = '<div class="contact-form"><div>Contact us at:<br><img src="m.png"></div></div>';
     document.body.appendChild(modal);
  
     modal.addEventListener('click', (e) => {
 	   if (modal == e.target) modalRemove();
     });
-    document.addEventListener("keydown", (e) => {
-    	if (e.key === "Escape") modalRemove();
+    document.addEventListener("keydown", function remove(e) {
+    	if (e.key === "Escape") {
+		modalRemove();
+		document.removeEventListener("keydown", remove);
+	}
     });
     setTimeout(() => { modal.style.opacity = 1; }, 0);
-    
-    modalRemove = () => {
-        modal.ontransitionend = () => { modal.remove(); }
+}	
+const modalRemove = () => {
+    const modal = document.getElementById('modal');
+    modal.ontransitionend = () => { modal.remove(); }
         setTimeout(() => { modal.style.opacity = 0; }, 0);
     }
-})
+
+document.querySelector('a.inquire').addEventListener('click', (e) => {
+    e.preventDefault();
+    modalCreate();
+})    
+   
+
 </script>
     
 <script>
