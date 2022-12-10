@@ -140,19 +140,22 @@ const modalCreate = () => {
     document.body.appendChild(modal);
     setTimeout(() => { modal.style.opacity = 1; }, 0);
 	
+    const remove = function(e) {
+        if (e.key === "Escape") modalRemove();
+    }
+    
     const modalRemove = () => {
     	const modal = document.getElementById('modal');
     	modal.ontransitionend = () => { modal.remove(); }
         setTimeout(() => { modal.style.opacity = 0; }, 0);
-	document.removeEventListener("keydown", remove, true);
+        window.removeEventListener("keydown", remove);
     }
-    modal.addEventListener('click', (e) => {
-	if (modal == e.target) modalRemove();
-    });
-    document.addEventListener("keydown", function remove(e) {
-    	if (e.key === "Escape") modalRemove();
-    }, true);
     
+    modal.addEventListener('click', (e) => {
+	   if (modal == e.target) modalRemove();
+    });
+	
+    window.addEventListener("keydown", remove);
 }	
 
 
