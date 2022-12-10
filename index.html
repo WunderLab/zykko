@@ -124,9 +124,8 @@ footer {
 <script>
 (() => {
     const img1 = new Image();
-    img1.onload = () => { document.body.style.backgroundImage = "url(back.jpg)"; }
-    img1.src = url;
-
+    img1.src = "back.jpg";
+    img1.onload = () => { document.body.style.backgroundImage = 'url("back.jpg")'; }
 
     const img2 = new Image();
     img2.src = "m.png";
