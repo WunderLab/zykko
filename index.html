@@ -138,23 +138,23 @@ const modalCreate = () => {
     modal.id = 'modal';
     modal.innerHTML = '<div class="contact-form"><div>Contact us at:<br><img src="m.png"></div></div>';
     document.body.appendChild(modal);
- 
+    setTimeout(() => { modal.style.opacity = 1; }, 0);
+	
+    const modalRemove = () => {
+    	const modal = document.getElementById('modal');
+    	modal.ontransitionend = () => { modal.remove(); }
+        setTimeout(() => { modal.style.opacity = 0; }, 0);
+	document.removeEventListener("keydown", remove);
+    }
     modal.addEventListener('click', (e) => {
-	   if (modal == e.target) modalRemove();
+	if (modal == e.target) modalRemove();
     });
     document.addEventListener("keydown", function remove(e) {
-    	if (e.key === "Escape") {
-		modalRemove();
-		document.removeEventListener("keydown", remove);
-	}
+    	if (e.key === "Escape") modalRemove();
     });
-    setTimeout(() => { modal.style.opacity = 1; }, 0);
+    
 }	
-const modalRemove = () => {
-    const modal = document.getElementById('modal');
-    modal.ontransitionend = () => { modal.remove(); }
-        setTimeout(() => { modal.style.opacity = 0; }, 0);
-    }
+
 
 document.querySelector('a.inquire').addEventListener('click', (e) => {
     e.preventDefault();
