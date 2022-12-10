@@ -123,15 +123,13 @@ footer {
 
 <script>
 (() => {
-    let url = 'back.jpg';
-    let img = new Image();
-    img.onload = () => { document.body.style.backgroundImage = "url('"+url+"')"; }
-    img.src = url;
-  }
-)();
+    const img1 = new Image();
+    img1.onload = () => { document.body.style.backgroundImage = "url(back.jpg)"; }
+    img1.src = url;
 
-const img = new Image();
-img.src = "m.png";
+
+    const img2 = new Image();
+    img2.src = "m.png";
 
 const modalCreate = () => {
     let modal = document.createElement('div');
@@ -159,12 +157,12 @@ const modalCreate = () => {
 }	
 
 
-document.querySelector('a.inquire').addEventListener('click', (e) => {
-    e.preventDefault();
-    modalCreate();
-})    
-   
-
+    document.querySelector('a.inquire').addEventListener('click', (e) => {
+        e.preventDefault();
+        modalCreate();
+    })    
+}
+)();
 </script>
     
 <script>
