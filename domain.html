@@ -362,6 +362,7 @@ button#inquire:active {
     });
 
     function render(name) {
+	document.title = name;
         domain.style.fontSize = fsize(name);
         domain.textContent = name;
         document.getElementById('wrapper').classList.remove("hidden");
