@@ -340,7 +340,7 @@ button#inquire:active {
     "2217edf15ae829258dbda456c093d9aff7442dbeac85fecec6ff94011ffc5932"
     ];
 
-    const name = (new URLSearchParams(window.location.search)).get("name") || window.location.hash.substring(1) || "";
+    const name = window.location.hash.substring(1) || (new URLSearchParams(window.location.search)).get("name") || "";
     const domain = document.getElementById('domain');
     
     async function sha256(message) {
