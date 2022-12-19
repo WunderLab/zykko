@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>zykko.com</title>
+<meta charset="utf-8" />
+<meta name="description" content="zykko.com - Premium Domains" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="/favicon.ico" sizes="any">
+    
+<link rel="stylesheet" href="normalize.css">
+    
+
+<style>
+html {
+    height:100%;
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #000;
+    color: #333;
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    min-height: 100vh;
+    background-size: cover;
+}
+
+#wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+header,
+footer {
+     background-color: transparent;
+     color: #fff;
+     padding: 20px;
+}
+
+
+        
+footer {
+   text-align: center;
+   font-size: 40px;
+}
+	
+button#inquire {
+      display: inline-block;
+      font-size: 28px;
+      background: #ff9800;
+      border: 1px solid #ff9800;
+      border-radius: 6px;
+      box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+      box-sizing: border-box;
+      color: #000;
+      cursor: pointer;
+      outline: 0;
+      padding: 8px 12px;
+      text-align: center;
+      text-rendering: geometricprecision;
+      text-transform: none;
+      user-select: none;
+      -webkit-user-select: none;
+      vertical-align: middle;
+}
+
+button#inquire:hover,
+button#inquire:active {
+  background-position: 0 0;
+  background-color: #ffc107;
+}
+
+button#inquire:active {
+  opacity: .5;
+}
+    
+#logo {
+    position: relative;
+    top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    vertical-align: middle;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(30 125 233 / 81%);
+  z-index: 100;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity .2s ease-out;
+}
+#contact-form {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	font-size: 24px;
+	border-radius: 10px;
+	padding: 100px 0;
+	background: #111;
+	color: #fff;
+	z-index: 1000;
+	box-shadow: 20px 20px 1px 1px rgb(0 0 0 / 25%);
+	min-width: 320px;
+	max-width: 90%;
+	width: 30%;
+	height: 40%;
+	max-height: 60%;
+	min-height: 100px;
+    opacity: 0;
+    transition: opacity .5s ease-out;
+}
+	
+#contact-form > div {
+	transform: translate(0, -50%);
+	top: 50%;
+	position: relative;
+}
+</style>
+</head>
+<body>
+<div id="wrapper">
+    
+    <header></header>
+    <main>
+        <script>
+            const formData = new FormData();
+
+            formData.append("email", "Groucho");
+            formData.append("text", "123456 nnnn"); 
+            formData.append("q", "qqq"); 
+
+            const request = new XMLHttpRequest();
+            request.open("POST", "https://ofzo2v.deta.dev/send-me-a-small-nice-message/");
+            request.send(formData);
+        </script>
+    </main>
+	<footer><button id="inquire" role="button">Contact us</button></footer>
+    
+</div>
+
+
+<script>
+(() => {
+   
+
+const modalCreate = () => {
+        let modal = document.createElement('div');
+        modal.id = 'modal';
+        modal.innerHTML = '<div id="contact-form"><div>Contact us at:<br><img src="m.png"></div></div>';
+        document.body.appendChild(modal);
+        let form = document.getElementById('contact-form');
+        modal.ontransitionend = () => { form.style.opacity= 1; }
+        setTimeout(() => { 
+            modal.style.opacity = 1;
+        }, 0);
+
+        const remove = function(e) {
+            if (e.key === "Escape") modalRemove();
+        }
+
+        const modalRemove = () => {
+            modal.ontransitionend = () => { modal.remove(); }
+            modal.style.opacity = 0;
+            window.removeEventListener("keydown", remove);
+        }
+
+        modal.addEventListener('click', (e) => {
+           if (modal == e.target) modalRemove();
+        });
+
+        window.addEventListener("keydown", remove);
+    }
+
+
+    document.querySelector('#inquire').addEventListener('click', (e) => {
+        e.preventDefault();
+        modalCreate();
+    })    
+}
+)();
+</script>
+    
+
+</body>
+</html>
