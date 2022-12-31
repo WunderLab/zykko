@@ -428,7 +428,7 @@ button#inquire:active {
         tmp.style = "position:absolute;z-index = -1000;font-weight:800;font-family:inherit;font-size:5px;";
         document.body.appendChild(tmp);
         tmp.textContent = text; 
-        const Wmax = document.body.offsetWidth/2;
+        const Wmax = document.body.offsetWidth * .9;
         let s = 5;
         while (tmp.offsetWidth < Wmax) {
             s = s + 3;
